@@ -11,29 +11,29 @@ import org.springframework.web.accept.HeaderContentNegotiationStrategy;
 @Configuration
 public class SecurityConfiguration {
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//
-//        // Protect endpoints at /api/<type>/secure
-//        http.
-//                csrf(csrf -> csrf.disable())
-//                .authorizeRequests(configurer ->
-//                        configurer
-//                                .requestMatchers("/api/books/secure/**")
-//                                .permitAll()
-//                                .anyRequest()
-//                                .authenticated());
-//
-//
-//        // Add content negotiation strategy
-//        http.setSharedObject(ContentNegotiationStrategy.class,
-//                new HeaderContentNegotiationStrategy());
-//
-//        // Force a non-empty response body for 401's to make the response friendly
-//        Okta.configureResourceServer401ResponseBody(http);
-//
-//        return http.build();
-//    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        // Protect endpoints at /api/<type>/secure
+        http.
+                csrf(csrf -> csrf.disable())
+                .authorizeRequests(configurer ->
+                        configurer
+                                .requestMatchers("/api/books/secure/**")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated());
+
+
+        // Add content negotiation strategy
+        http.setSharedObject(ContentNegotiationStrategy.class,
+                new HeaderContentNegotiationStrategy());
+
+        // Force a non-empty response body for 401's to make the response friendly
+        Okta.configureResourceServer401ResponseBody(http);
+
+        return http.build();
+    }
 
 }
 
