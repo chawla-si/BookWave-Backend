@@ -1,6 +1,6 @@
 package com.BookWave.springbootlibrary.service;
 
-import com.BookWave.springbootlibrary.dao.BookRepository;
+
 import com.BookWave.springbootlibrary.dao.ReviewRepository;
 import com.BookWave.springbootlibrary.entity.Review;
 import com.BookWave.springbootlibrary.requestmodels.ReviewRequest;
@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDate;
-
 
 @Service
 @Transactional
@@ -23,7 +22,7 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public void postReview(String userEmail, ReviewRequest reviewRequest) throws Exception  {
+    public void postReview(String userEmail, ReviewRequest reviewRequest) throws Exception {
         Review validateReview = reviewRepository.findByUserEmailAndBookId(userEmail, reviewRequest.getBookId());
         if (validateReview != null) {
             throw new Exception("Review already created");
@@ -42,5 +41,15 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
+    public Boolean userReviewListed(String userEmail, Long bookId) {
+        Review validateReview = reviewRepository.findByUserEmailAndBookId(userEmail, bookId);
+        if (validateReview != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
+
+
