@@ -1,7 +1,6 @@
 package com.BookWave.springbootlibrary.entity;
 
-import jakarta.persistence.*;
-import jakarta.persistence.Table;
+import javax.persistence.*;
 import lombok.Data;
 
 @Entity
